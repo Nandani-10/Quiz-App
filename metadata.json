@@ -1,0 +1,8 @@
+{
+  "name": "Quiz portal",
+  "description": "An interactive Salesforce Prompt Builder quiz featuring multiple choice, term matching, execution sequencing, and template builder fill-in-the-blank questions in solo training and live host-participant multiplayer modes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

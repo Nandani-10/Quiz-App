@@ -1,0 +1,86 @@
+{
+  "entities": {
+    "HostAccount": {
+      "title": "HostAccount",
+      "description": "Details of a registered presenter host account",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "passwordHash": { "type": "string" }
+      },
+      "required": ["name", "email", "passwordHash"]
+    },
+    "HostHistoryReport": {
+      "title": "HostHistoryReport",
+      "description": "Historical performance archive for a completed session",
+      "type": "object",
+      "properties": {
+        "sessionId": { "type": "string" },
+        "sessionCode": { "type": "string" },
+        "quizTitle": { "type": "string" },
+        "dateHosted": { "type": "string" },
+        "questionsCount": { "type": "number" },
+        "playersCount": { "type": "number" },
+        "questions": { "type": "array" },
+        "players": { "type": "array" },
+        "answers": { "type": "object" }
+      },
+      "required": [
+        "sessionId",
+        "sessionCode",
+        "quizTitle",
+        "dateHosted",
+        "questionsCount",
+        "playersCount",
+        "questions",
+        "players",
+        "answers"
+      ]
+    },
+    "QuizSession": {
+      "title": "QuizSession",
+      "description": "Active dynamic multiplayer session and participant status",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string" },
+        "hostId": { "type": "string" },
+        "currentQuestionIndex": { "type": "number" },
+        "phase": { "type": "string" },
+        "questionStartTime": { "type": "number" },
+        "timeLimit": { "type": "number" },
+        "questions": { "type": "array" },
+        "players": { "type": "object" },
+        "answers": { "type": "object" },
+        "lastUpdatedAt": { "type": "number" },
+        "quizTitle": { "type": "string" }
+      },
+      "required": [
+        "code",
+        "hostId",
+        "currentQuestionIndex",
+        "phase",
+        "questionStartTime",
+        "timeLimit",
+        "questions",
+        "players",
+        "answers",
+        "lastUpdatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/hosts/{email}": {
+      "schema": "HostAccount",
+      "description": "Presenter host credentials reference"
+    },
+    "/hosts/{email}/reports/{reportId}": {
+      "schema": "HostHistoryReport",
+      "description": "Historical reports for a specific presenter account"
+    },
+    "/sessions/{code}": {
+      "schema": "QuizSession",
+      "description": "Active interactive room state"
+    }
+  }
+}
